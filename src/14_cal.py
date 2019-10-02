@@ -21,4 +21,26 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+import datetime
+ 
+args = sys.argv
+if len(args) == 1:
+  #get current month/year and render calendar
+  month = datetime.date.today().month
+  year = datetime.date.today().year
+
+elif len(args) == 2:
+  #assume its a month and render calendar for that month of current year
+  month = int(args[1])
+  year = datetime.date.today().year
+  
+elif len(args) == 3:
+  #render calendar for month and year entered
+  month = int(args[1])
+  year = int(args[2])
+
+else:
+  print('Too many arguments: program expects 0, 1 (int month), or 2 (int month & int year)')
+
+cal = calendar.TextCalendar(calendar.SUNDAY)
+cal.prmonth(theyear=year, themonth=month)
